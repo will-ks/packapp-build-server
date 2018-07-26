@@ -4,10 +4,7 @@ const ObjectId = Schema.Types.ObjectId;
 
 const itemSchema = new Schema({
   name: String,
-  owner: {
-    type: ObjectId,
-    ref: 'User'
-  }
+  image: String
 });
 
 const Item = mongoose.model('Item', itemSchema);

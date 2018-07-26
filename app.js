@@ -13,7 +13,7 @@ const app = express();
 
 // --- Configurations --- //
 mongoose.Promise = Promise;
-mongoose.connect('mongodb://localhost/database-name', {
+mongoose.connect('mongodb://localhost/example-db', {
   keepAlive: true,
   reconnectTries: Number.MAX_VALUE
 });
