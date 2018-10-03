@@ -6,6 +6,7 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mongoose = require('mongoose');
+const helmet = require('helmet');
 
 const items = require('./routes/items');
 
@@ -23,6 +24,7 @@ mongoose.connect(
 );
 
 // --- Middleware --- //
+app.use(helmet());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
