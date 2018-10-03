@@ -1,6 +1,7 @@
 'use strict';
 
 // --- Dependencies --- //
+require('dotenv').config();
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
@@ -13,10 +14,13 @@ const app = express();
 
 // --- Configurations --- //
 mongoose.Promise = Promise;
-mongoose.connect('mongodb://localhost/example-db', {
-  keepAlive: true,
-  reconnectTries: Number.MAX_VALUE
-});
+mongoose.connect(
+  process.env.MONGODBURI,
+  {
+    keepAlive: true,
+    reconnectTries: Number.MAX_VALUE
+  }
+);
 
 // --- Middleware --- //
 app.use(logger('dev'));
