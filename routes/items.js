@@ -8,7 +8,7 @@ const Item = require('../models/items');
 router.get('/', (req, res, next) => {
   Item.find()
     .then(result => {
-      res.json(result);
+      return res.json(result);
     })
     .catch(next);
 });
@@ -23,7 +23,7 @@ router.get('/:id', (req, res, next) => {
       if (!result) {
         return next();
       }
-      res.json(result);
+      return res.json(result);
     })
     .catch(next);
 });
@@ -31,14 +31,14 @@ router.get('/:id', (req, res, next) => {
 // Example POST
 router.post('/', (req, res, next) => {
   if (!req.body.name || !req.body.image) {
-    res.status(422).json({ code: 'incorrect parameters' });
+    return res.status(422).json({ code: 'incorrect parameters' });
   };
 
   const data = req.body;
   const newItem = new Item(data);
   newItem.save()
     .then(result => {
-      res.json(result);
+      return res.json(result);
     })
     .catch(next);
 });
@@ -50,7 +50,7 @@ router.put('/:id', (req, res, next) => {
   };
 
   if (!req.body.name && !req.body.image) {
-    res.status(422).json({ code: 'incorrect parameters' });
+    return res.status(422).json({ code: 'incorrect parameters' });
   };
 
   const data = req.body;
@@ -59,7 +59,7 @@ router.put('/:id', (req, res, next) => {
       if (!result) {
         return next();
       }
-      res.json(result);
+      return res.json(result);
     })
     .catch(next);
 });
