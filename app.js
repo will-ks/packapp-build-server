@@ -7,6 +7,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
+const cors = require('cors');
 
 const items = require('./routes/items');
 
@@ -29,6 +30,12 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(
+  cors({
+    credentials: true,
+    origin: [process.env.CLIENT_URL]
+  })
+);
 
 // --- Routes --- //
 app.use('/items', items);
