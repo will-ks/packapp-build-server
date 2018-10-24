@@ -5,24 +5,13 @@ require('dotenv').config();
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const mongoose = require('mongoose');
 const helmet = require('helmet');
 const cors = require('cors');
 
-const items = require('./routes/items');
+const builds = require('./routes/builds');
 
 // --- Instantiations --- //
 const app = express();
-
-// --- Configurations --- //
-mongoose.Promise = Promise;
-mongoose.connect(
-  process.env.MONGODBURI,
-  {
-    keepAlive: true,
-    reconnectTries: Number.MAX_VALUE
-  }
-);
 
 // --- Middleware --- //
 app.use(helmet());
@@ -38,7 +27,7 @@ app.use(
 );
 
 // --- Routes --- //
-app.use('/items', items);
+app.use('/builds', builds);
 
 // --- Error Handling --- //
 app.use((req, res, next) => {
