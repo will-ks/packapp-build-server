@@ -50,7 +50,9 @@ router.post('/', (req, res, next) => {
     req.body.callback
   ];
   const buildScriptPath = './shell/build-android.sh';
-  execa('sh', [buildScriptPath, params]).stdout.pipe(process.stdout);
+  const cp = execa('sh', [buildScriptPath, params]);
+  cp.stdout.pipe(process.stdout);
+  cp.stderr.pipe(process.stderr);
   res.send('foo');
 });
 
