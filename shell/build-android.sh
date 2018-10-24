@@ -1,9 +1,9 @@
 #!/bin/sh
 
 # parameters
-# $1: unique id
-# $2: splashScreen filename
-# $3: launcherIcon filename
+# $1: _id
+# $2: splashScreen
+# $3: launcherIcon
 # $4  appName
 # $5  url
 # $6  primaryColor
@@ -17,7 +17,7 @@
 # $14  uploads
 # $15  zoom
 # $16  orientation
-# $17  callback URL
+# $17  callback
 
 cd $HOME/packapp/remote-builds
 mkdir $1

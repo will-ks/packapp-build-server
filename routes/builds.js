@@ -31,8 +31,26 @@ router.post('/', (req, res, next) => {
     return res.status(422).json({ code: 'incorrect parameters' });
   }
 
+  const params = [
+    req.body._id,
+    req.body.splashScreen,
+    req.body.launcherIcon,
+    req.body.appName,
+    req.body.primaryColor,
+    req.body.secondaryColor,
+    req.body.camera,
+    req.body.externalUrls,
+    req.body.gps,
+    req.body.progressBar,
+    req.body.ratingDays,
+    req.body.ratings,
+    req.body.uploads,
+    req.body.zoom,
+    req.body.orientation,
+    req.body.callback
+  ];
   const buildScriptPath = './shell/test.sh';
-  execa('sh', [buildScriptPath]).stdout.pipe(process.stdout);
+  execa('sh', [buildScriptPath, params]).stdout.pipe(process.stdout);
   res.send('foo');
 });
 
