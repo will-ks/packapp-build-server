@@ -49,7 +49,7 @@ router.post('/', (req, res, next) => {
     req.body.orientation,
     req.body.callback
   ];
-  const buildScriptPath = './shell/test.sh';
+  const buildScriptPath = './shell/build-android.sh';
   execa('sh', [buildScriptPath, params]).stdout.pipe(process.stdout);
   res.send('foo');
 });
