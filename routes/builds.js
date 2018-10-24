@@ -36,6 +36,7 @@ router.post('/', (req, res, next) => {
     req.body.splashScreen,
     req.body.launcherIcon,
     req.body.appName,
+    req.body.url,
     req.body.primaryColor,
     req.body.secondaryColor,
     req.body.camera,
