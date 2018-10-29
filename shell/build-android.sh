@@ -57,12 +57,16 @@ mv $HOME/packapp/remote-builds/$1/packapp-android/app/src/main/res/drawable-xxhd
 mv $HOME/packapp/remote-builds/$1/packapp-android/app/src/main/res/drawable-xhdpi $HOME/packapp/remote-builds/$1/packapp-android/app/src/main/res/mipmap-xhdpi
 mv $HOME/packapp/remote-builds/$1/packapp-android/app/src/main/res/drawable-hdpi $HOME/packapp/remote-builds/$1/packapp-android/app/src/main/res/mipmap-hdpi
 mv $HOME/packapp/remote-builds/$1/packapp-android/app/src/main/res/drawable-mdpi $HOME/packapp/remote-builds/$1/packapp-android/app/src/main/res/mipmap-mdpi
+cd $HOME/packapp/remote-builds/$1/
+zip -r -q $1.zip packapp-android
+gsutil cp $1.zip gs://projectcountdown-195619.appspot.com/$1.zip
+printf 'Google cloud storage upload source zip successful'
 cd $HOME/packapp/remote-builds/$1/packapp-android/
 if ./gradlew build; then
     printf 'Build succeeded'
     cd $HOME/packapp/remote-builds/$1/packapp-android/app/build/outputs/apk/debug/
     gsutil cp app-debug.apk gs://projectcountdown-195619.appspot.com/$1.apk
-    printf 'Google cloud storage upload successful upload successful'
+    printf 'Google cloud storage upload successful'
     gsutil acl ch -u AllUsers:R gs://projectcountdown-195619.appspot.com/$1.apk
     printf 'Made built apk file public'
     curl -i -d "id=$1&builtApk=$1.apk&secret=$SECRET" -X PUT $17
