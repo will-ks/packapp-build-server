@@ -71,7 +71,7 @@ if ./gradlew build; then
     printf 'Google cloud storage upload successful'
     gsutil acl ch -u AllUsers:R gs://projectcountdown-195619.appspot.com/$1.apk
     printf 'Made built apk file public'
-    curl -i -d "id=$1&builtApk=$1.apk&secret=$SECRET" -X PUT $17
+    curl -i -d "id=$1&builtApk=$1.apk&sourceZip=$1.zip&secret=$SECRET" -X PUT $17
     printf 'Remote build and upload successful'
 else
     curl -i -d "id=$1&builtError=shellScriptExited&secret=$SECRET" -X PUT $17
