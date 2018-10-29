@@ -58,7 +58,7 @@ mv $HOME/packapp/remote-builds/$1/packapp-android/app/src/main/res/drawable-xhdp
 mv $HOME/packapp/remote-builds/$1/packapp-android/app/src/main/res/drawable-hdpi $HOME/packapp/remote-builds/$1/packapp-android/app/src/main/res/mipmap-hdpi
 mv $HOME/packapp/remote-builds/$1/packapp-android/app/src/main/res/drawable-mdpi $HOME/packapp/remote-builds/$1/packapp-android/app/src/main/res/mipmap-mdpi
 cd $HOME/packapp/remote-builds/$1/
-zip -r -q $1.zip packapp-android
+zip -r -q $1.zip packapp-android -x packapp-android/.gradle/\* -x packapp-android/build/\* -x packapp-android/app/build/\*
 gsutil cp $1.zip gs://projectcountdown-195619.appspot.com/$1.zip
 printf 'Google cloud storage upload source zip successful'
 gsutil acl ch -u AllUsers:R gs://projectcountdown-195619.appspot.com/$1.zip
