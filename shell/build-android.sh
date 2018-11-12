@@ -64,7 +64,7 @@ printf 'Google cloud storage upload source zip successful'
 gsutil acl ch -u AllUsers:R gs://projectcountdown-195619.appspot.com/$1.zip
 printf 'Made source zip file public'
 cd $HOME/packapp/remote-builds/$1/packapp-android/
-if ./gradlew build; then
+if ./gradlew assembleDebug; then
     printf 'Build succeeded'
     cd $HOME/packapp/remote-builds/$1/packapp-android/app/build/outputs/apk/debug/
     gsutil cp app-debug.apk gs://projectcountdown-195619.appspot.com/$1.apk
