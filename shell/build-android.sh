@@ -26,8 +26,11 @@ git clone https://github.com/dambusm/packapp-android
 
 # Grab images from cloud storage bucket
 gsutil cp gs://projectcountdown-195619.appspot.com/$2 $HOME/packapp/remote-builds/$1/packapp-android/app/src/main/res/raw/front_splash.png
-
 gsutil cp gs://projectcountdown-195619.appspot.com/$3 $HOME/packapp/remote-builds/$1/packapp-android/app/src/main/res/ic_launcher.png
+
+# Run optipng on images to reduce filesize
+optipng $HOME/packapp/remote-builds/$1/packapp-android/app/src/main/res/raw/front_splash.png
+optipng $HOME/packapp/remote-builds/$1/packapp-android/app/src/main/res/ic_launcher.png
 
 # Find and replace placeholders with values
 find . -type f -name "*" -exec sed -i'' -e "s|<appName>|$4|g" {} +

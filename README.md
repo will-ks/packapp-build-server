@@ -16,7 +16,8 @@ This repo contains the PackApp build server.
 - Android SDK
 - Node.js
 - Python
-- [android-asset-resizer](https://pypi.org/project/android-asset-resizer/) installed to $HOME/android-asset-resizer
+- [android-asset-resizer](https://pypi.org/project/android-asset-resizer/) installed to \$HOME/android-asset-resizer
+- optipng
 
 ## Setup
 
